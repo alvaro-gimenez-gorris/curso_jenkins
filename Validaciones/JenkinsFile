@@ -1,0 +1,61 @@
+
+def currentDate = new Date().getDay()
+def daysDefinition = [1: "Lunes", 2: "Martes", 3: "Miercoles", 4: "Jueves", 5: "Viernes"]
+def currentDateDefinition = daysDefinition[currentDate]
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Lunes') {
+            steps {
+                script{
+                    if(currentDateDefinition.equals("Lunes")){
+                        println "Este pipeline no se ejecuta los lunes"
+                    }
+                }
+            }
+        }
+        stage('Martes') {
+            steps {
+                script{
+                    if(currentDateDefinition.equals("Martes")){
+                        println("Fecha actual: " +  new Date())
+                    }
+                }
+            }
+        }
+        stage('Miércoles') {
+            steps {
+                script{
+                    if(currentDateDefinition.equals("Miercoles")){
+                        println "Este pipeline no se ejecuta los miércoles"
+                    }
+                }
+            }
+        }
+        stage('Jueves') {
+            steps {
+                script{
+                    if(currentDateDefinition.equals("Jueves")){
+                        println "Este pipeline no se ejecuta los jueves"
+                    }
+                }
+            }
+        }
+        stage('Viernes') {
+            steps {
+                script{
+                    def cause = currentBuild.rawBuild.getCause(Cause.UserIdCause)
+                    if (cause != null) {
+                        def user = cause.userId ?: 'anonymous'
+                        echo "started by ${user}"
+                    } else {
+                        echo "started some other way"
+                    }
+                }
+                
+            }
+        }
+    }
+}
