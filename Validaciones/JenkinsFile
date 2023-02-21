@@ -46,13 +46,15 @@ pipeline {
         stage('Viernes') {
             steps {
                 script{
-                    def cause = currentBuild.rawBuild.getCause(Cause.UserIdCause)
-                    if (cause != null) {
-                        def user = cause.userId ?: 'anonymous'
-                        echo "started by ${user}"
-                    } else {
-                        echo "started some other way"
-                    }
+                    if(currentDateDefinition.equals("Viernes")){
+                        def cause = currentBuild.rawBuild.getCause(Cause.UserIdCause)
+                        if (cause != null) {
+                            def user = cause.userId ?: 'anonymous'
+                            echo "started by ${user}"
+                        } else {
+                            echo "started some other way"
+                        }
+                    } 
                 }
                 
             }
