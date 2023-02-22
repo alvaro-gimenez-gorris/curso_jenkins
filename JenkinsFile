@@ -23,6 +23,10 @@ pipeline
                         
                         println(multRes)
                         println(potRes)
+                        
+                        def text = multRes + "\n" + potRes
+                        
+                        writeFile (file: "salida.txt", text: texto)
                     }
                 }
                 
