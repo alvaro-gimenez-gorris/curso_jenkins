@@ -24,7 +24,7 @@ pipeline
                         println(multRes)
                         println(potRes)
                         
-                        def text = multRes + "\n" + potRes
+                        def texto = multRes + "\n" + potRes
                         
                         writeFile (file: "salida.txt", text: texto)
                     }
