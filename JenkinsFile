@@ -1,0 +1,31 @@
+def primerNumero = 2
+def segundoNumero = 10
+
+pipeline
+{
+    agent any
+    stages
+    {
+            stage("Creacion")
+            {
+                steps
+                {
+                    script
+                    {
+                        println("Primer número: " + primerNumero)
+                        println("Segundo número: " + segundoNumero)
+                        
+                        def mult = (primerNumero * segundoNumero)
+                        def pot = ((primerNumero + segundoNumero) ** 2)
+                        
+                        def multRes = "Resultado de la multiplicación: " + mult
+                        def potRes = "Resultado del cuadrado de la suma: " +  pot
+                        
+                        println(multRes)
+                        println(potRes)
+                    }
+                }
+                
+            }
+    }
+}
